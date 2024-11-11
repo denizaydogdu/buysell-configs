@@ -51,4 +51,17 @@ spring:
     properties:
       hibernate:
         default_schema: buysell
-  d
+  datasource:
+    url: jdbc:postgresql://postgres:5432/buysell
+    username: admin
+    password: 1234
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
