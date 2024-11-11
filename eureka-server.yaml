@@ -1,9 +1,20 @@
-# Localhost Profili
+# Genel Ayarlar (Tüm Profiller İçin Ortak)
+
 spring:
   application:
     name: eureka-server
-  profiles:
-    active: localhost
+
+eureka:
+  instance:
+    appname: eureka-server
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+# Localhost Profili
+---
+spring:
   config:
     activate:
       on-profile: localhost
@@ -13,14 +24,7 @@ info:
 
 eureka:
   instance:
-    appname: eureka-server
     hostname: localhost
-    prefer-ip-address: true
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url:
-      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka
 
 server:
   port: 8762
@@ -37,11 +41,24 @@ info:
 
 eureka:
   instance:
-    appname: eureka-server
     hostname: eureka-server
-    prefer-ip-address: true
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url:
-      default
+
+server:
+  port: 8761
+
+# Prod Profili
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+info:
+  component: Eureka Server - Github - Prod
+
+eureka:
+  instance:
+    hostname: eureka-server-prod
+
+server:
+  port: 8765
