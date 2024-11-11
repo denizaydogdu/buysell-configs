@@ -1,3 +1,4 @@
+# Localhost Profili
 spring:
   application:
     name: eureka-server
@@ -13,7 +14,7 @@ info:
 eureka:
   instance:
     appname: eureka-server
-    hostname: eureka-server
+    hostname: localhost
     prefer-ip-address: true
   client:
     register-with-eureka: false
@@ -24,10 +25,9 @@ eureka:
 server:
   port: 8762
 
+# Docker Profili
 ---
-
 spring:
-  profiles: docker
   config:
     activate:
       on-profile: docker
@@ -44,7 +44,4 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka
-
-server:
-  port: 8761
+      default
