@@ -1,9 +1,12 @@
+# Genel Ayarlar (Localhost Profili Varsayılan)
 spring:
   application:
     name: zuul-edge-server
+  profiles:
+    active: localhost
 
 server:
-  port: 8765
+  port: 8763
 
 zuul:
   routes:
@@ -15,22 +18,9 @@ zuul:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka-server:8761/eureka
+      defaultZone: http://localhost:8762/eureka
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 10
     lease-expiration-duration-in-seconds: 30
-
----
-
-spring:
-  profiles: localhost
-
-server:
-  port: 8763
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8762/eureka
