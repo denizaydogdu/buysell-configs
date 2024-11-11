@@ -6,10 +6,12 @@ spring:
 
 ---
 spring:
-  profiles: localhost
+  config:
+    activate:
+      on-profile: localhost
 
 info:
-  componenet: Eureka Server - Github - Localhost
+  component: Eureka Server - Github - Localhost
 
 eureka:
   instance:
@@ -24,12 +26,15 @@ eureka:
 
 server:
   port: 8763
+
 ---
 spring:
-  profiles: stage
+  config:
+    activate:
+      on-profile: stage
 
 info:
-  componenet: Eureka Server - Github - Stage
+  component: Eureka Server - Github - Stage
 
 eureka:
   instance:
@@ -44,4 +49,4 @@ eureka:
 
 server:
   port: 8765
-  renewal-percent-threshold: 0.85 
+  renewal-percent-threshold: 0.85
