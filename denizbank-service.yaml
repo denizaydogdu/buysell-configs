@@ -1,3 +1,4 @@
+# Genel Ayarlar (Tüm Profiller İçin Ortak)
 spring:
   application:
     name: denizbank-service
@@ -11,57 +12,49 @@ spring:
       hibernate:
         default_schema: buysell
   datasource:
-    url: jdbc:postgresql://postgres:5432/buysell
     username: admin
     password: 1234
 
 eureka:
   client:
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 10
     lease-expiration-duration-in-seconds: 30
 
+# Localhost Profili
 ---
-
 spring:
-  profiles: localhost
-  jpa:
-    properties:
-      hibernate:
-        default_schema: buysell
+  config:
+    activate:
+      on-profile: localhost
   datasource:
     url: jdbc:postgresql://localhost:5433/buysell
-    username: admin
-    password: 1234
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8762/eureka/
 
----
+server:
+  port: 9788
 
+# Docker Profili
+---
 spring:
-  profiles: docker
-  jpa:
-    properties:
-      hibernate:
-        default_schema: buysell
+  config:
+    activate:
+      on-profile: docker
   datasource:
     url: jdbc:postgresql://postgres:5432/buysell
-    username: admin
-    password: 1234
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 10
-    lease-expiration-duration-in-seconds: 30
+
+server:
+  port: 8080
