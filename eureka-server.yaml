@@ -1,5 +1,4 @@
 # Genel Ayarlar (Tüm Profiller İçin Ortak)
-
 spring:
   application:
     name: eureka-server
@@ -27,7 +26,7 @@ eureka:
     hostname: localhost
 
 server:
-  port: 8762
+  port: 8761
 
 # Docker Profili
 ---
@@ -35,7 +34,7 @@ spring:
   config:
     activate:
       on-profile: docker
-    import: optional:configserver:http://config-server:8889
+    import: optional:configserver:http://config-server:8888
 
 info:
   component: Eureka Server - Github - Docker
@@ -62,4 +61,4 @@ eureka:
     hostname: eureka-server-prod
 
 server:
-  port: 8765
+  port: 8761
